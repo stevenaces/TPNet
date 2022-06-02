@@ -23,7 +23,7 @@ import torch.nn.functional as F
 import os
 
 os.environ['CUDA_DEVICE_ORDER'] = 'PCI_BUS_ID'
-os.environ['CUDA_VISIBLE_DEVICES'] = '1'
+os.environ['CUDA_VISIBLE_DEVICES'] = '0'
 
 
 
@@ -45,20 +45,24 @@ class BackboneTrain(nn.Module):
 
 	def classifier(self, in_planes, out_planes):
 		return nn.Sequential(
-
+			# w = [ (width + 2*padding - kernel_size) / step ] + 1 					# w = [ (28 + 2*1 - 3) / 1 ] +1 = 28
 			nn.Conv2d(in_planes, 512, kernel_size=3, padding=1, dilation=1),
 			nn.ReLU(True),
 
 			nn.Conv2d(512, 512, kernel_size=3, padding=1, dilation=1),
 			nn.ReLU(True),
-			nn.Conv2d(512, out_planes, kernel_size=1, padding=0)
+
+			nn.Conv2d(512, out_planes, kernel_size=1, padding=0)						# w = [(28 + 2*0 -1) / 1 ] + 1 = 28
 		)
 
 
 	def forward(self, x):
 		x = Variable(x.cuda())
+
+		# x 输入 backbone 网络 得到特征
 		x = self.feature(x)
 
+		
 		feat = F.avg_pool2d(x, kernel_size=3, stride=1, padding=1)
 
 

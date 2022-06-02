@@ -20,7 +20,7 @@ sys.path.append('../')
 
 
 os.environ['CUDA_DEVICE_ORDER'] = 'PCI_BUS_ID'
-os.environ['CUDA_VISIBLE_DEVICES'] = '2'
+os.environ['CUDA_VISIBLE_DEVICES'] = '0'
 
 #Basic ResNet model
 
@@ -363,7 +363,7 @@ model_urls = {
     'vgg19_bn': 'https://download.pytorch.org/models/vgg19_bn-c79401a0.pth',
 }
 
-
+# 通过 配置 组装VGG网络结构
 def make_layers(cfg, dilation=None, batch_norm=False):
     layers = []
     in_channels = 3
@@ -381,7 +381,7 @@ def make_layers(cfg, dilation=None, batch_norm=False):
             in_channels = v
     return nn.Sequential(*layers)
 
-
+# 不同版本的 VGG网络 配置
 cfg = {
     'A': [64, 'M', 128, 'M', 256, 256, 'M', 512, 512, 'M', 512, 512, 'M'],
     'B': [64, 64, 'M', 128, 128, 'M', 256, 256, 'M', 512, 512, 'M', 512, 512, 'M'],

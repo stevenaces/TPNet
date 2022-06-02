@@ -15,7 +15,7 @@ from metatest import MetaTest
 from io_utils import model_dict, parse_args, get_resume_file, get_best_file, get_assigned_file
 
 os.environ['CUDA_DEVICE_ORDER'] = 'PCI_BUS_ID'
-os.environ['CUDA_VISIBLE_DEVICES'] = '9'
+os.environ['CUDA_VISIBLE_DEVICES'] = '0'
 
 
 def save_features(model, data_loader, outfile):

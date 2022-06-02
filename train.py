@@ -158,6 +158,7 @@ if __name__ == '__main__':
 
 	start_epoch = params.start_epoch
 	stop_epoch = params.stop_epoch
+	
 	if params.method == 'maml' or params.method == 'maml_approx':
 		stop_epoch = params.stop_epoch * model.n_task
 

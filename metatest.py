@@ -13,7 +13,7 @@ from PIL import Image
 
 
 os.environ['CUDA_DEVICE_ORDER'] = 'PCI_BUS_ID'
-os.environ['CUDA_VISIBLE_DEVICES'] = '8'
+os.environ['CUDA_VISIBLE_DEVICES'] = '0'
 
 
 class SELayer(nn.Module):
